@@ -1,4 +1,6 @@
+import React from "react";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Container, PokeBody, Pokedex, PokeHeader, PokeList, Pokemon, PokeTela } from "./style/pokedex";
 
 
@@ -42,7 +44,7 @@ export default function PokedexPage(){
                                         const poke_id=pokemon.url.split('/')
                                         return(
                                             <Pokemon>
-                                                <a href=""><img src={`${image_path}${poke_id[6]}.png`} alt="" /></a>
+                                                <Link to={`/pages/pagPoke${pokemon.url}`}><img src={`${image_path}${poke_id[6]}.png`} alt="{pokemon.name}" /></Link>
                                                 <span>pokemon</span>
                                             </Pokemon>                                               
                                         )
