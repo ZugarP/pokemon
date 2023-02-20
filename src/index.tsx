@@ -14,7 +14,7 @@ root.render(
   <BrowserRouter>
   <Routes>
     <Route path='/' element={<Home/>}/>
-    <Route path='/pagPoke/:url' element={<PagPoke/>}/>
+    
   </Routes>
   </BrowserRouter>
 );

@@ -1,53 +1,42 @@
 import styled from "styled-components";
 
+interface Props{
+    color:string;
+}
 
-export const Container =styled.div`
-
+export const Container = styled.div`
     h1{
-        text-align:center;
-        margin 4rem 0;
+        text-align: center;
+        margin: 4rem;
+    }
+`
 
-    }   
+export const PokemonList = styled.ul`
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    column-gap: 2rem;
+    row-gap: 2rem;
+`
 
-`;
-export const PokeList = styled.ul`
-    list-style:none;
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
-    column-gap:3rem;
-    row-gap:4rem;
-
-
-`;
-export const Pokemon= styled.li`
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    
+export const PokemonStyle = styled.div<Props>`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    height: 300px;
+    border-radius: 1rem;
+    justify-content: center;
+    box-shadow: 5px 5px #999999;
+    background-color: ${p => p.color};
 
     img{
-        width:180px;
-        border-radius:10rem;
-        margin-bottom:2rem;
-        border-bottom: solid 1rem white;
-        border-top: solid 1rem red;
+        height: 200px;
+        margin-right: 2rem;
     }
-
 
     span{
-
-        font-weight:bold;
-        font-size:120%;
-        text-align:center;
-        padding-top: 5px;
+        text-align: center;
+        margin-top: 1rem;
     }
-
-    a{
-        transition:0.3s;
-    }
-
-    a:hover{
-        transform:scale(1.1);
-        
-    }
-`;
+`

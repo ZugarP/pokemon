@@ -1,43 +1,43 @@
 import * as ReactDOM from 'react-dom';
 import { useState, useEffect } from "react";
 import React from "react";
-import { Container, PokeList, Pokemon } from "./style/home";
+import { Container, PokemonList } from "./style/home";
 import { Link } from 'react-router-dom';
+import Pokemon from './components';
 
-export default function Home(){
+export default function Home() {
 
     const [pokemons, setPokemons] = useState<any[]>([])
-    const image_path ="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
-    
-    
 
-    useEffect(() => {
-        fetch(`https://pokeapi.co/api/v2/pokemon`)
-            .then(response => response.json())
-            .then(data => setPokemons(data.results))
-    }, [])
-    
-  return(
-    
+    function getPokemons(){
+        var pokemonPromises = [];
+        for(var i=1;i<11;i++){
+            pokemonPromises.push(fetch(`https://pokeapi.co/api/v2/pokemon/${i}`))
+        }
+        console.log(pokemonPromises)
+        setPokemons(pokemonPromises)
+    }
+
+    useEffect(()=>getPokemons(), [])
+
+    return (
         <Container>
-            <h1>Pokedex</h1>
-            <PokeList>
-                {
-                    pokemons.map( pokemon => {
-                            const pokemon_id=pokemon.url.split('/') //aqui eu divido a url pelos / ai chamo dps chamo o pokemon_id[posição]
-                        return(
+            <h1>Pokémon</h1>
+            <div>
+                <PokemonList>
+                    {
+                        pokemons.map(pokemon => {
+                            return (
+                                <Pokemon promissed_pokemon={pokemon}>     
+                                                           
+                                </Pokemon>
+                            )
+                        })
+                    }
                     
-                            <Pokemon key={pokemon_id[6]}>
-                                 <Link to={`/pagPoke/${pokemon.name}`}><img src={`${image_path}${pokemon_id[6]}.png`} alt={pokemon.name} /></Link>
-                                <span>{pokemon.name}</span>
-                            </Pokemon>
-                        )
-                    })
-                }
-            </PokeList>
+                </PokemonList>
+            </div>
         </Container>
-    );
-    
-  
+    )
 }
   
