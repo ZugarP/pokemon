@@ -5,6 +5,7 @@ import Home from './pages/home';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PagPoke from './pages/pagPoke';
+import PokemonDetails from './pages/details';
 
 
 const root = ReactDOM.createRoot(
@@ -14,7 +15,7 @@ root.render(
   <BrowserRouter>
   <Routes>
     <Route path='/' element={<Home/>}/>
-    
+    <Route path='/pokemon-details'element={<PokemonDetails/>}></Route>
   </Routes>
   </BrowserRouter>
 );

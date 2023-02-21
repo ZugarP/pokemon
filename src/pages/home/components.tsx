@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { getPokemonColorByType } from "../../utils/pokemon-colors";
 import PokemonAbilityEntity from "./entities/pokemon-ability-entity";
 import PokemonEntity from "./entities/pokemon-entity";
@@ -32,7 +33,7 @@ export default function Pokemon(props:any){
                 var pokemonTypes:PokemonTypeEntity[] = [];
                 var pokemonLocations:PokemonLocationEntity[] = [];
 
-                data.abilites.map(pokemonAbility => {
+                data.abilities.map(pokemonAbility => {
                     pokemonAbilities.push(new PokemonAbilityEntity(pokemonAbility.ability.name) )
                 });
                 
@@ -58,7 +59,7 @@ export default function Pokemon(props:any){
         return (
             <Container>
                 <PokemonStyle color={getPokemonColorByType(pokemon.types[0].name)}>
-                    <img src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${pokemon.id}.svg`} alt={pokemon.name}/>
+                    <Link to={`/pokemon-details/`}><img src={pokemon.imageUrl} alt={pokemon.name}/></Link>
                     <span>{pokemon.name}</span>
                 </PokemonStyle>
             </Container>
