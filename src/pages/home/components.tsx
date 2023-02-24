@@ -1,13 +1,13 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
+
 import { Link } from "react-router-dom";
 import { getPokemonColorByType } from "../../utils/pokemon-colors";
 import PokemonAbilityEntity from "./entities/pokemon-ability-entity";
 import PokemonEntity from "./entities/pokemon-entity";
 import PokemonLocationEntity from "./entities/pokemon-location-entity";
 import PokemonTypeEntity from "./entities/pokemon-type-entity";
-import { PokemonStyle } from "./style/home";
+import { PokemonStyle, Container } from "./style/home";
 
 export default function Pokemon(props:any){
     const [pokemon, setPokemon] = useState<PokemonEntity>()
