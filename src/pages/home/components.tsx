@@ -72,3 +72,4 @@ export default function Pokemon(props:any){
         )
     }    
 }
+//mais

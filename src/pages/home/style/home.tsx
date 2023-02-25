@@ -40,3 +40,4 @@ export const PokemonStyle = styled.div<Props>`
         margin-top: 1rem;
     }
 `
+//mais
