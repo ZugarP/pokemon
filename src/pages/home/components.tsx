@@ -17,7 +17,7 @@ export default function Pokemon(props:any){
         var response = await fetch(locationUrl);
         var data = await response.json();
 
-        data.map(location =>{
+        data.slice(0,2).map(location =>{
             locations.push(new PokemonLocationEntity(location.location_area.name));
         })
         return locations;
@@ -33,11 +33,11 @@ export default function Pokemon(props:any){
                 var pokemonTypes:PokemonTypeEntity[] = [];
                 var pokemonLocations:PokemonLocationEntity[] = [];
 
-                data.abilities.map(pokemonAbility => {
+                data.abilities.slice(0,2).map(pokemonAbility => {
                     pokemonAbilities.push(new PokemonAbilityEntity(pokemonAbility.ability.name) )
                 });
                 
-                data.types.map(pokemonType=>{
+                data.types.slice(0,2).map(pokemonType=>{
                     pokemonTypes.push(new PokemonTypeEntity(pokemonType.type.name))
                 });
 
@@ -59,8 +59,10 @@ export default function Pokemon(props:any){
         return (
             <Container>
                 <PokemonStyle color={getPokemonColorByType(pokemon.types[0].name)}>
-                    <Link to={`/pokemon-details/`}><img src={pokemon.imageUrl} alt={pokemon.name}/></Link>
-                    <span>{pokemon.name}</span>
+                    <Link to={{pathname:'/pokemon-details/', search:`?pokemon=${JSON.stringify(pokemon)}`}}>
+                        <img src={pokemon.imageUrl} alt={pokemon.name}/>
+                        </Link>
+                    <span>{pokemon.name.toUpperCase()}</span>
                 </PokemonStyle>
             </Container>
         )

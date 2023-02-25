@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { pokemonLocal } from "../../utils/consts";
 import { getPokemonColorByType } from "../../utils/pokemon-colors";
 import PokemonEntity from "../home/entities/pokemon-entity";
 import { CenterAlign, Container, Details, HpText, LeftAlign, PokemonStyle, RightAlign } from "./style";
+import { useParams, useSearchParams } from "react-router-dom";
 
 export default function PokemonDetails(){
 
     const [pokemon, setPokemon]= useState<PokemonEntity>(pokemonLocal as PokemonEntity)
+    const [searchParams] = useSearchParams();
+
+    useEffect(()=>{
+        var data = JSON.parse(searchParams.get('pokemon'));
+        setPokemon(data as PokemonEntity)
+    },[])
     
     return(
-            <Container>
-                    <PokemonStyle color={getPokemonColorByType(pokemon.types[0].name)}>
+            <Container color={getPokemonColorByType(pokemon.types[0].name)}>
+                    <PokemonStyle>
                         <img src={pokemon.imageUrl} alt={pokemon.name}/>
                         <span className="pokemon-name">{pokemon.name}</span >
                         <hr />

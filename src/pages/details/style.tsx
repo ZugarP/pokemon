@@ -1,10 +1,14 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+interface Props{
+    color: string;
+}
+
+export const Container = styled.div<Props>`
     display: flex;
     align-items: center;   
     justify-content: center; 
-    background-color: blue;
+    background-color:${p=>p.color};
     height: 1081px;    
     overflow:hidden;
     
@@ -31,7 +35,7 @@ export const PokemonStyle = styled.div`
     border-radius: 1rem;
     border: 1px solid black;    
     justify-content: center;    
-    background-color: transparent;
+    background-color: #F5DEB3;
     padding: 3rem;
 
     img{
