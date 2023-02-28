@@ -2,14 +2,15 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
-import { getPokemonColorByType } from "../../utils/pokemon-colors";
-import PokemonAbilityEntity from "./entities/pokemon-ability-entity";
-import PokemonEntity from "./entities/pokemon-entity";
-import PokemonLocationEntity from "./entities/pokemon-location-entity";
-import PokemonTypeEntity from "./entities/pokemon-type-entity";
-import { PokemonStyle, Container } from "./style/home";
+import { getPokemonColorByType } from "../../../utils/pokemon-colors";
+import PokemonAbilityEntity from "../model/pokemon-ability-entity";
+import PokemonEntity from "../model/pokemon-entity";
+import PokemonLocationEntity from "../model/pokemon-location-entity";
+import PokemonTypeEntity from "../model/pokemon-type-entity";
+import { Container, PokemonStyle } from "./style";
 
-export default function Pokemon(props:any){
+
+export default function PokemonComponent(props:any){
     const [pokemon, setPokemon] = useState<PokemonEntity>()
 
     async function getPokemonLocations(locationUrl:string):Promise<PokemonLocationEntity[]>{
@@ -30,19 +31,17 @@ export default function Pokemon(props:any){
             if(data.id !== undefined){
 
                 var pokemonAbilities:PokemonAbilityEntity[] = [];
-                var pokemonTypes:PokemonTypeEntity[] = [];
-                var pokemonLocations:PokemonLocationEntity[] = [];
-
                 data.abilities.slice(0,2).map(pokemonAbility => {
                     pokemonAbilities.push(new PokemonAbilityEntity(pokemonAbility.ability.name) )
                 });
-                
+
+                var pokemonTypes:PokemonTypeEntity[] = [];
                 data.types.slice(0,2).map(pokemonType=>{
                     pokemonTypes.push(new PokemonTypeEntity(pokemonType.type.name))
                 });
 
+                var pokemonLocations:PokemonLocationEntity[] = [];         
                 pokemonLocations = await getPokemonLocations(data.location_area_encounters);
-                
                 
                 var pokemonEntity: PokemonEntity;
                 pokemonEntity = new PokemonEntity(data.id,data.name,pokemonTypes,pokemonLocations,pokemonAbilities,data.base_experience)
