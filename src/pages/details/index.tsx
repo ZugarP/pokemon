@@ -4,7 +4,8 @@ import { getPokemonColorByType } from "../../utils/pokemon-colors";
 
 import { CenterAlign, Container, Details, HpText, LeftAlign, PokemonStyle, RightAlign } from "./style";
 import { useParams, useSearchParams } from "react-router-dom";
-import PokemonEntity from "../pokemon-list/model/pokemon-entity";
+import PokemonEntity from "../../pokemon/model/pokemon-entity";
+
 
 export default function PokemonDetails(){
 
